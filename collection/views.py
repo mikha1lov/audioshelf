@@ -17,6 +17,7 @@ class TrackView(CreateView):
 class TracksList(ListView):
     model = Track
     template_name = "tracks.html"
+    ordering = ['id']
 
     def get_context_data(self, **kwargs):
         """Добавляем в контекст текущий день"""
