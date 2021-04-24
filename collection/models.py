@@ -9,7 +9,7 @@ User = get_user_model()
 class Track(models.Model):
     """Отдельный музыкальный трек"""
     title = models.CharField(
-        'Название',
+        'Назване',
         max_length=255,
         help_text="Введите  название трека"
     )
