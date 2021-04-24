@@ -9,9 +9,9 @@ User = get_user_model()
 class Track(models.Model):
     """Отдельный музыкальный трек"""
     title = models.CharField(
-        'Название',
+        'Назване',
         max_length=255,
-        help_text="Введите название трека"
+        help_text="Введите  название трека"
     )
     artist = models.CharField(
         'Автор',
@@ -20,7 +20,7 @@ class Track(models.Model):
     )
 
     def __str__(self):
-        return f"{self.title} ({self.artist})"
+        return f"{self.title} ({self.artist}"
 
 
 class TrackForm(ModelForm):
