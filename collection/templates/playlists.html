@@ -8,4 +8,5 @@
     {% for playlist in object_list %}
         <p>{{playlist.title }}</p>
     {% endfor %}
+    <a href="{% url 'playlists_create' %}">Новый плейлист</a>
 {% endblock %}
