@@ -23,7 +23,7 @@ class Playlist(models.Model):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, null=False)
-    cover = models.ImageField(upload_to='covers')
+    cover = models.ImageField(upload_to='covers', blank=True)
 
     tracks = models.ManyToManyField('Track')
 
