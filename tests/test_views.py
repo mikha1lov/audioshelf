@@ -23,7 +23,7 @@ class ViewsTest (TestCase):
         authorized_url = reverse('playlists_list')
 
         response = self.guest_client.get(authorized_url)
-        self.assertRedirects(response, '/admin/login/?next=/task/')
+        self.assertRedirects(response, f'/accounts/login/?next={authorized_url}')
 
         response = self.authorized_client.get(authorized_url)
-        self.assertEqual(response, HTTPStatus.OK)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
