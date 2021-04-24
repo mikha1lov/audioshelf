@@ -21,7 +21,7 @@ class TracksList(ListView):
     def get_context_data(self, **kwargs):
         """Добавляем в контекст текущий день"""
         context = super().get_context_data(**kwargs)
-        context['today'] = datetime.date.today()
+        # context['today'] = datetime.date.today()
         return context
 
 
