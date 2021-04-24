@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.forms import ModelForm
 
 
 User = get_user_model()
@@ -9,6 +10,12 @@ class Track(models.Model):
     """Отдельный музыкальный трек"""
     title = models.CharField(max_length=255)
     artist = models.CharField(max_length=255)
+
+
+class TrackForm(ModelForm):
+    class Meta:
+        model = Track
+        fields = ['title', 'artist']
 
 
 class Playlist(models.Model):
