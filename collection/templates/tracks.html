@@ -1,4 +1,12 @@
-{% for track in object_list %}
-<p>{{ track.title }} ({{track.artist}})</p>
-{% endfor %}
-<a href="{% url 'create_track' %}">Новый трек</a>
+{% extends "base.html" %}
+
+{% block title %}
+Список треков
+{% endblock %}
+
+{% block content %}
+    {% for track in object_list %}
+        <p>{{ track.title }} ({{track.artist}})</p>
+    {% endfor %}
+    <a href="{% url 'tracks_create' %}">Новый трек</a>
+{% endblock %}

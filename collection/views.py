@@ -24,7 +24,19 @@ class TracksList(ListView):
         context['today'] = datetime.date.today()
         return context
 
+
 @method_decorator(login_required, name='dispatch')
 class PlaylistList(ListView):
     model = Playlist
     template_name = "playlists.html"
+
+
+@method_decorator(login_required, name='dispatch')
+class PlaylistView(CreateView):
+    form_class = PlayListForm
+    template_name = "new_playlist.html"
+    success_url = reverse_lazy('playlists_list')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
