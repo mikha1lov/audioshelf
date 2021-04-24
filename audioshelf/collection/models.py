@@ -15,6 +15,7 @@ class Playlist(models.Model):
     """Плейлист пользователя"""
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=False)
     cover = models.ImageField(upload_to='covers')
 
     tracks = models.ManyToManyField('Track')
