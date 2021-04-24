@@ -1,5 +1,14 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Отправить">
-</form> 
+{% extends "base.html" %}
+
+{% block title %}
+Добавить трек
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Отправить">
+    </form>
+    <a href="{% url 'tracks_list' %}">К списку треков</a>
+{% endblock %}

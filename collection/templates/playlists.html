@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+Список плейлистов
+{% endblock %}
+
+{% block content %}
+    {% for playlist in object_list %}
+        <p>{{playlist.title }}</p>
+    {% endfor %}
+{% endblock %}
