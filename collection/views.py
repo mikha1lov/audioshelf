@@ -1,4 +1,5 @@
 import datetime
+from django.http.response import HttpResponse
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
@@ -40,3 +41,6 @@ class PlaylistView(CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+def track_example (request, track_id):
+    return HttpResponse()
