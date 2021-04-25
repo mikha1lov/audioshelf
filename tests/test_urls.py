@@ -10,8 +10,7 @@ class URLsTest (TestCase):
     def test_valid_url_200_response (self):  # !
         pathnames_to_test = (
             'tracks_list',
-            'create_track',
-            'playlists_list',
+            'tracks_create',
         )
 
         for pathname in pathnames_to_test:
