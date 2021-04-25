@@ -11,7 +11,7 @@ class FormsTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        Track.objects.create(
+        cls.track = Track.objects.create(
             artist = 'Би2',
             title = 'Би3',
         )
@@ -30,7 +30,6 @@ class FormsTest(TestCase):
         response = self.guest_client.post(
             reverse('tracks_create'),
             data=form_data,
-            follow=True,
         )
 
         self.assertRedirects(response, reverse('tracks_list'))
@@ -79,6 +78,8 @@ class FormsTest(TestCase):
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(Track.objects.count(), tracks_count)
+        self.assertIn('artist', response.context['form'].errors)
+        self.assertNotIn('title', response.context['form'].errors)
         self.assertFalse(
             Track.objects.filter(
                 title='трек 1',
