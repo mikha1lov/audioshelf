@@ -43,5 +43,5 @@ class TrackModelTest(TestCase):
         track = TrackModelTest.track
         self.assertEqual(
             str(track),
-            f'Unnamed track #10 (Unnamed Artist)'
+            'Unnamed track #10 (Unnamed Artist)'
         )
