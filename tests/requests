@@ -1,0 +1,14 @@
+curl -v -L -X GET 'http://127.0.0.1:8000/collection/api/tracks' -H 'Token: token'
+curl -v -L -X GET 'http://127.0.0.1:8000/collection/api/playlists' -H 'Token: token'
+
+
+```python
+from users.models import User, Token
+u = User.objects.create(username="test username")
+t = Token.objects.create(user=u, value="token", active=True)
+
+from collection.models import Track, Playlist
+trks = [Track.objects.create(title=f"Track {t}", artist=f"Artist {t}") for t in range(1,10)]
+pls = Playlist.objects.create(owner=u)
+pls.tracks.set(trks)
+```

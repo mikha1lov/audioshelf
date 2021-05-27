@@ -1,5 +1,6 @@
 from django.test import TestCase
 from collection.models import Track
+from users.models import Token, User
 
 
 class TrackModelTest(TestCase):
@@ -45,3 +46,25 @@ class TrackModelTest(TestCase):
             str(track),
             'Unnamed track #10 (Unnamed Artist)'
         )
+
+class TokenModelTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Создаём тестовую запись в БД
+        # и сохраняем ее в качестве переменной класса
+        cls.user = User.objects.create(email="test")
+
+        cls.token_value = "test-token-value"
+        cls.inactive_value = "inactive-token"
+        cls.invalid_token_value = "some-invalid-token"
+
+        cls.active_token = Token.objects.create(user=cls.user, value=cls.token_value, active=True)
+        cls.inactive_token = Token.objects.create(user=cls.user, value=cls.inactive_value, active=False)
+
+    def test_token_validation(self):
+        self.assertEquals(Token.validate_token(self.__class__.token_value), self.__class__.user)
+        self.assertIsNone(Token.validate_token(self.__class__.invalid_token_value))
+
+    def test_inactive_token(self):
+        self.assertIsNone(Token.validate_token(self.__class__.inactive_value))

@@ -22,6 +22,9 @@ class Track(models.Model):
     def __str__(self):
         return f"{self.title} ({self.artist})"
 
+    def to_json(self):
+        return {'id': self.id, 'title': self.title, 'artist': self.artist}
+
 
 class TrackForm(ModelForm):
     class Meta:
@@ -37,6 +40,15 @@ class Playlist(models.Model):
     cover = models.ImageField(upload_to='covers', blank=True)
 
     tracks = models.ManyToManyField('Track')
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'owner_id': self.owner.id,
+            'title': self.title,
+            'slug': self.slug,
+            'tracks': [track.to_json() for track in self.tracks.all()],
+        }
 
 
 class PlayListForm(ModelForm):

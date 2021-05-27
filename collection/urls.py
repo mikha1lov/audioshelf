@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from . import api
 
 urlpatterns = [
     path('tracks/<int:track_id>', views.track_example, name='track_example'),
@@ -10,4 +11,7 @@ urlpatterns = [
 
     path('playlists/', views.PlaylistList.as_view(), name='playlists_list'),
     path('playlists/new', views.PlaylistView.as_view(), name='playlists_create'),
+
+    path('api/tracks', api.tracks_list, name='api_tracks'),
+    path('api/playlists', api.playlists_list, name='api_playlists'),
 ]
