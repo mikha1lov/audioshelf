@@ -1,7 +1,6 @@
 import datetime
 from http import HTTPStatus
 
-from django.contrib import auth
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -10,27 +9,28 @@ from collection.models import Track
 
 User = get_user_model()
 
-class ViewsTest (TestCase):
+
+class ViewsTest(TestCase):
     @classmethod
-    def setUpClass (cls):  # !
+    def setUpClass(cls):  # !
         super().setUpClass()
 
-        cls.user = User.objects.create_user(username = "TestUser")
+        cls.user = User.objects.create_user(username="TestUser")
 
         # Add some tracks to test database
         cls.tracks = [
-            Track.objects.create(title = "B Monkey", artist = "Funki Porcini"),
-            Track.objects.create(title = "Чудовище", artist = "АИГЕЛ"),
-            Track.objects.create(title = "На север", artist = "шумные и угрожающие выходки"),
+            Track.objects.create(title="B Monkey", artist="Funki Porcini"),
+            Track.objects.create(title="Чудовище", artist="АИГЕЛ"),
+            Track.objects.create(title="На север", artist="шумные и угрожающие выходки"),
         ]
         cls.first_track = cls.tracks[0]
 
-    def setUp (self):
+    def setUp(self):
         self.guest_client = Client()
         self.authorized_client = Client()
         self.authorized_client.force_login(self.__class__.user)
 
-    def test_authorized_zone (self):
+    def test_authorized_zone(self):
         authorized_url = reverse('playlists_list')
 
         response = self.guest_client.get(authorized_url)
@@ -39,7 +39,7 @@ class ViewsTest (TestCase):
         response = self.authorized_client.get(authorized_url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    def test_check_context (self):
+    def test_check_context(self):
         response = self.guest_client.get(reverse('tracks_list'))
 
         # Today key

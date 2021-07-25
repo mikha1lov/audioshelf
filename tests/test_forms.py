@@ -12,10 +12,10 @@ class FormsTest(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         Track.objects.create(
-            artist = 'Би2',
-            title = 'Би3',
+            artist='Би2',
+            title='Би3',
         )
-    
+
     def setUp(self):
         self.guest_client = Client()
 
