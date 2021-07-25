@@ -5,7 +5,8 @@ from django.views.generic import ListView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import PlayListForm, Playlist, TrackForm, Track
+from .models import Playlist, Track
+from .forms import PlayListForm, TrackForm
 
 
 class TrackView(CreateView):
