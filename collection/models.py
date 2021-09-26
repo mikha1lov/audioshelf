@@ -43,3 +43,8 @@ class PlayListForm(ModelForm):
     class Meta:
         model = Playlist
         fields = ['title', 'slug', 'cover', 'tracks']
+
+
+class Review(models.Model):
+    """Модель отзывов"""
+    text = models.TextField()
