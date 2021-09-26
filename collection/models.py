@@ -49,3 +49,4 @@ class Review(models.Model):
     """Модель отзывов"""
     text = models.TextField(verbose_name='Текст')
     score = models.IntegerField(verbose_name='Оценка')
+
