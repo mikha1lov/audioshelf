@@ -43,7 +43,7 @@ class PlayListForm(ModelForm):
     class Meta:
         model = Playlist
         fields = ['title', 'slug', 'cover', 'tracks']
-git
+
 
 class Review(models.Model):
     """Модель отзывов"""
