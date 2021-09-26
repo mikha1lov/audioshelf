@@ -47,4 +47,4 @@ class PlayListForm(ModelForm):
 
 class Review(models.Model):
     """Модель отзывов"""
-    text = models.TextField()
+    text = models.TextField(max_length=1000)
